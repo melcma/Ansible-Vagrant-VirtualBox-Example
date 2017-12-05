@@ -1,0 +1,19 @@
+---
+- hosts: dev
+  become: true
+
+  vars_files:
+    - vars/applications.yml
+    - vars/main.yml
+
+  roles:
+    - { role: geerlingguy.git }
+    - { role: geerlingguy.nodejs }
+    - { role: geerlingguy.php }
+
+  tasks:
+    - name: Installing node.js dependencies with NPM
+      npm:
+        path: /var/www/{{ item.key }}
+        state: latest
+      with_dict: "{{ applications }}"

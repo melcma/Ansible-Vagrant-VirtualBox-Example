@@ -1,0 +1,8 @@
+---
+applications:
+  website.com:
+    backend: nodejs
+    repository: git@github...
+  website2.com:
+    backend: php
+    repository: git@github...
